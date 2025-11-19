@@ -20,6 +20,6 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.SCALITY_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.SCALITY_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SCALITY_SECRET_KEY }}
-          AWS_S3_ENDPOINT: ${{ secrets.SCALITY_ENDPOINT }}   # Example: https://s3.company.com
-          AWS_REGION: us-east-1                              # Not used by Scality, but required
-          SOURCE_DIR: "."                                    # Upload the root folder
+          AWS_S3_ENDPOINT: ${{ secrets.SCALITY_ENDPOINT }}
+          AWS_REGION: us-east-1
+          SOURCE_DIR: "."
