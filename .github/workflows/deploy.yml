@@ -1,0 +1,25 @@
+name: Deploy Static HTML to Scality
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload to Scality S3 bucket
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --acl public-read --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.SCALITY_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.SCALITY_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SCALITY_SECRET_KEY }}
+          AWS_S3_ENDPOINT: ${{ secrets.SCALITY_ENDPOINT }}   # Example: https://s3.company.com
+          AWS_REGION: us-east-1                              # Not used by Scality, but required
+          SOURCE_DIR: "."                                    # Upload the root folder
